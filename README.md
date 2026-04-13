@@ -1,0 +1,1 @@
+This project is a simple drawing tool that is primarily to practice DOM manipulation. 

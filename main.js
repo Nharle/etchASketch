@@ -2,12 +2,13 @@
 IF mouseDown make clicked  
 Change color of the div  
  */
-let row = 16;
-let collumn = 16;
+let size = 16;
 let container = document.querySelector(".container");
 let color = "#000000";
 let drawing = false;
 let resetBtn = document.querySelector(".reset");
+let slider = document.querySelector(".slide");
+let sliderText = document.querySelector(".slideText");
 
 function colorItem(e) {
     if(drawing) {
@@ -17,15 +18,15 @@ function colorItem(e) {
     }
 }
 function resetPad() {
-createPad();
+createPad(size);
 }
-function createPad(){
+function createPad(s){
 container.replaceChildren();
-for(let i =0; i < row; i++){
+for(let i =0; i < s; i++){
     let gridRow = document.createElement("div");
     gridRow.classList.add("gridRow");
     container.appendChild(gridRow);
-    for(let j=0; j<collumn;j++) {
+    for(let j=0; j<s;j++) {
          let gridItem = document.createElement("div");
          gridItem.classList.add("gridItem");
          gridRow.appendChild(gridItem);
@@ -33,8 +34,8 @@ for(let i =0; i < row; i++){
     }
 }
 }
-
-createPad();
+sliderText.textContent = `${size} x ${size}`;
+createPad(size);
 
 container.addEventListener("pointerdown", (e) => {
     drawing=true;
@@ -50,4 +51,8 @@ window.addEventListener("pointerup", () => {
     
 });
 resetBtn.addEventListener("click", resetPad);
-
+slider.addEventListener("input", () => {
+size = slider.value;
+sliderText.textContent = `${size} x ${size}`;
+createPad(size);
+})

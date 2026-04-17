@@ -7,15 +7,20 @@ let collumn = 16;
 let container = document.querySelector(".container");
 let color = "#000000";
 let drawing = false;
+let resetBtn = document.querySelector(".reset");
 
 function colorItem(e) {
     if(drawing) {
-        console.log("hello");
+        
         e.target.style.backgroundColor = color;
         
     }
 }
-
+function resetPad() {
+createPad();
+}
+function createPad(){
+container.replaceChildren();
 for(let i =0; i < row; i++){
     let gridRow = document.createElement("div");
     gridRow.classList.add("gridRow");
@@ -27,8 +32,9 @@ for(let i =0; i < row; i++){
 
     }
 }
+}
 
-
+createPad();
 
 container.addEventListener("pointerdown", (e) => {
     drawing=true;
@@ -36,8 +42,12 @@ container.addEventListener("pointerdown", (e) => {
     
 });
 container.addEventListener("pointermove", colorItem);
+container.addEventListener("pointerup", (e) => {
+    e.target.style.backgroundColor = color; 
+});
 window.addEventListener("pointerup", () => {
     drawing=false;
     
 });
+resetBtn.addEventListener("click", resetPad);
 

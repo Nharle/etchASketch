@@ -9,6 +9,7 @@ let drawing = false;
 let resetBtn = document.querySelector(".reset");
 let slider = document.querySelector(".slide");
 let sliderText = document.querySelector(".slideText");
+let colorPicker = document.querySelector(".colorPicker");
 
 function colorItem(e) {
     if(drawing) {
@@ -56,3 +57,7 @@ size = slider.value;
 sliderText.textContent = `${size} x ${size}`;
 createPad(size);
 })
+colorPicker.addEventListener("input", () => {
+    color = colorPicker.value;
+})
+

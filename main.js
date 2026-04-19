@@ -8,16 +8,45 @@ let color = "#000000";
 let drawing = false;
 let resetBtn = document.querySelector("#reset");
 let eraserBtn = document.querySelector("#erase");
+let rainbowBtn = document.querySelector("#rainbow");
+let r = 0;
+let g = 0;
+let b = 0;
 let erase = false;
+let rainbow = false;
 let slider = document.querySelector(".slide");
 let sliderText = document.querySelector(".slideText");
 let colorPicker = document.querySelector(".colorPicker");
 
 function colorItem(e) {
     if(drawing) {
-        
+        if(rainbow) {
+            r = Math.floor(Math.random() * 256);
+            g = Math.floor(Math.random() * 256);
+            b = Math.floor(Math.random() * 256);
+            color = `rgb(${r}, ${g}, ${b})`
+        }
+        else if(!rainbow && !erase){
+            color = colorPicker.value;
+        }
         e.target.style.backgroundColor = color;
         
+    }
+}
+function rainbowItem(e) {
+    eraserBtn.style.backgroundColor = "#ffffff"
+    erase = false;
+    r = Math.floor(Math.random() * 256);
+    g = Math.floor(Math.random() * 256);
+    b = Math.floor(Math.random() * 256);
+    rainbow = !rainbow;
+    if(rainbow){
+        color = `rgb(${r},${g},${b})`;
+        e.target.style.backgroundColor = "#e0e0e0"
+    }
+    else if(!rainbow && !erase){
+        color = colorPicker.value;
+        e.target.style.backgroundColor = "#ffffff";
     }
 }
 function resetPad() {
@@ -59,13 +88,13 @@ size = slider.value;
 sliderText.textContent = `${size} x ${size}`;
 createPad(size);
 });
-resetBtn.addEventListener("pointerdown", (e) =>  e.target.style.backgroundColor = "#e0e0e0");
-resetBtn.addEventListener("pointerup", (e)=> e.target.style.backgroundColor = "#ffffff");
 colorPicker.addEventListener("input", () => {
     color = colorPicker.value;
 });
 eraserBtn.addEventListener("click", (e) => {
     erase = !erase;
+    rainbow = false;
+    rainbowBtn.style.backgroundColor = "#ffffff";
     if(erase){
         color = "#FFFFFF";
         e.target.style.backgroundColor = "#e0e0e0"
@@ -76,3 +105,4 @@ eraserBtn.addEventListener("click", (e) => {
         
     }
 });
+rainbowBtn.addEventListener("click", rainbowItem);

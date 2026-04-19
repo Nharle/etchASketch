@@ -59,17 +59,20 @@ size = slider.value;
 sliderText.textContent = `${size} x ${size}`;
 createPad(size);
 });
+resetBtn.addEventListener("pointerdown", (e) =>  e.target.style.backgroundColor = "#9d9d9d");
+resetBtn.addEventListener("pointerup", (e)=> e.target.style.backgroundColor = "#e0e0e0");
 colorPicker.addEventListener("input", () => {
     color = colorPicker.value;
 });
-eraserBtn.addEventListener("click", () => {
+eraserBtn.addEventListener("click", (e) => {
     erase = !erase;
     if(erase){
-    color = "#FFFFFF";
-    document.body.style.cursor = "url('images/eraser-solid-full.svg')"
+        color = "#FFFFFF";
+        e.target.style.backgroundColor = "#9d9d9d"
     }
     else {
         color = colorPicker.value;
-        document.body.style.cursor = "default";
+        e.target.style.backgroundColor = "#e0e0e0";
+        
     }
 });

@@ -59,8 +59,8 @@ size = slider.value;
 sliderText.textContent = `${size} x ${size}`;
 createPad(size);
 });
-resetBtn.addEventListener("pointerdown", (e) =>  e.target.style.backgroundColor = "#9d9d9d");
-resetBtn.addEventListener("pointerup", (e)=> e.target.style.backgroundColor = "#e0e0e0");
+resetBtn.addEventListener("pointerdown", (e) =>  e.target.style.backgroundColor = "#e0e0e0");
+resetBtn.addEventListener("pointerup", (e)=> e.target.style.backgroundColor = "#ffffff");
 colorPicker.addEventListener("input", () => {
     color = colorPicker.value;
 });
@@ -68,11 +68,11 @@ eraserBtn.addEventListener("click", (e) => {
     erase = !erase;
     if(erase){
         color = "#FFFFFF";
-        e.target.style.backgroundColor = "#9d9d9d"
+        e.target.style.backgroundColor = "#e0e0e0"
     }
     else {
         color = colorPicker.value;
-        e.target.style.backgroundColor = "#e0e0e0";
+        e.target.style.backgroundColor = "#ffffff";
         
     }
 });

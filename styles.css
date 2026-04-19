@@ -41,8 +41,9 @@
 }
 .button {
     border-radius:12px;
-    padding:8px 30px;
-    background-color:#e0e0e0;
+    padding:16px 32px;
+    font-size:16px;
+    background-color:#ffffff;
     
 }
 

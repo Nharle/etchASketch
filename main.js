@@ -6,7 +6,9 @@ let size = 16;
 let container = document.querySelector(".container");
 let color = "#000000";
 let drawing = false;
-let resetBtn = document.querySelector(".reset");
+let resetBtn = document.querySelector("#reset");
+let eraserBtn = document.querySelector("#erase");
+let erase = false;
 let slider = document.querySelector(".slide");
 let sliderText = document.querySelector(".slideText");
 let colorPicker = document.querySelector(".colorPicker");
@@ -56,8 +58,18 @@ slider.addEventListener("input", () => {
 size = slider.value;
 sliderText.textContent = `${size} x ${size}`;
 createPad(size);
-})
+});
 colorPicker.addEventListener("input", () => {
     color = colorPicker.value;
-})
-
+});
+eraserBtn.addEventListener("click", () => {
+    erase = !erase;
+    if(erase){
+    color = "#FFFFFF";
+    document.body.style.cursor = "url('images/eraser-solid-full.svg')"
+    }
+    else {
+        color = colorPicker.value;
+        document.body.style.cursor = "default";
+    }
+});
